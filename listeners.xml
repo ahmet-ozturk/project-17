@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <listeners> <!-- listeners'lari test class'lara baglamak icin kullanilri -->
+        <listener class-name="utilities.Listeners"/>  <!-- Listeners Utility class path'i -->
+    </listeners>
+    <test verbose="2" preserve-order="true"
+          name="C:\Users\lenovo\IdeaProjects\com.Batch81TestNG\src\test\java\tests\ListenersTest1.java">
+        <classes>
+            <class name="tests.day16.C01_BeforeMethodAfterMethod"> <!-- test class path'i -->
+            </class>
+        </classes>
+    </test>
+</suite>
