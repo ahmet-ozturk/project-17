@@ -25,9 +25,7 @@ public class US_13_14_15 {
         Thread.sleep(3000);
         us.ilk_sing_out_button.click();
         us.stor_manager_button.click();
-        act.sendKeys(Keys.PAGE_DOWN)
-                .sendKeys(Keys.PAGE_DOWN)
-                .sendKeys(Keys.PAGE_DOWN).perform();
+        act.sendKeys(Keys.PAGE_DOWN).perform();
         us.cponus_button.click();
         us.add_new_button.click();
         act.sendKeys(Keys.ARROW_DOWN)
