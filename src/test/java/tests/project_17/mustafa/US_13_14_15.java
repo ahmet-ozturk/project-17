@@ -28,6 +28,7 @@ public class US_13_14_15 {
         act.sendKeys(Keys.PAGE_DOWN).perform();
         Thread.sleep(3);
         us.cponus_button.click();
+        act.sendKeys(Keys.PAGE_DOWN).perform();
         us.add_new_button.sendKeys(Keys.ENTER);
         act.sendKeys(Keys.ARROW_DOWN)
                 .sendKeys(Keys.ARROW_DOWN)
