@@ -45,8 +45,9 @@ public class US_13_14_15 {
         Thread.sleep(1000);
         us.gecerli_tarih.click();
         us.free_shipping_chekbox.click();
-        us.show_on_store_chekbox.click();
         act.sendKeys(Keys.PAGE_DOWN).perform();
+        us.show_on_store_chekbox.click();
+act.moveToElement(us.kupon_kaydetme_buttonu).perform();
 
     }
 
