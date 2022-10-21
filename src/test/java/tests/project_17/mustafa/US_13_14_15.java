@@ -10,7 +10,6 @@ import utilities.Driver;
 public class US_13_14_15 {
 
 
-
     US_13_14_15Pages us = new US_13_14_15Pages();
     Actions act = new Actions(Driver.getDriver());
 
@@ -26,6 +25,7 @@ public class US_13_14_15 {
         Thread.sleep(3000);
         us.ilk_sing_out_button.click();
         us.stor_manager_button.click();
+        act.sendKeys(Keys.PAGE_DOWN).perform();
         us.cponus_button.click();
         us.add_new_button.click();
         act.sendKeys(Keys.ARROW_DOWN)
@@ -45,8 +45,9 @@ public class US_13_14_15 {
         Thread.sleep(1000);
         us.gecerli_tarih.click();
         us.free_shipping_chekbox.click();
-        us.show_on_store_chekbox.click();
         act.sendKeys(Keys.PAGE_DOWN).perform();
+        us.show_on_store_chekbox.click();
+act.moveToElement(us.kupon_kaydetme_buttonu).perform();
 
     }
 
