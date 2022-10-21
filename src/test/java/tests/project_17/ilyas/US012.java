@@ -23,7 +23,6 @@ public class US012 {
                 .sendKeys(Keys.TAB).sendKeys(Keys.ENTER).perform();
         Thread.sleep(1000);
         Assert.assertTrue(project17Page.girisYapildi.isDisplayed());
-        Driver.closeDriver();
 
 
 
