@@ -1,4 +1,4 @@
-package ibrahim;
+package tests.project_17.ibrahim;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
