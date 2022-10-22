@@ -13,9 +13,10 @@ import java.time.Duration;
 
 public class US012 {
     @Test
-    public void test01() throws InterruptedException { Driver.getDriver().get(ConfigReader.getProperty("project17Url"));
+    public void test001() throws InterruptedException {
+        Driver.getDriver().get(ConfigReader.getProperty("project17Url"));
         Thread.sleep(2000);
-        Project17Page project17Page= new Project17Page();
+        Project17Page project17Page = new Project17Page();
         Thread.sleep(2000);
         project17Page.singin.click();
         Thread.sleep(2000);
@@ -26,12 +27,14 @@ public class US012 {
                 .sendKeys(Keys.TAB).sendKeys(Keys.ENTER).perform();
         Thread.sleep(1000);
         Assert.assertTrue(project17Page.girisYapildi.isDisplayed());
-        Driver.closeDriver();
-    }@Test
+        Driver.quitDriver();
+    }
+
+    @Test
     public void test002() throws InterruptedException {
         Driver.getDriver().get(ConfigReader.getProperty("project17Url"));
         Thread.sleep(2000);
-        Project17Page project17Page= new Project17Page();
+        Project17Page project17Page = new Project17Page();
         Thread.sleep(2000);
         project17Page.singin.click();
         Thread.sleep(2000);
@@ -41,19 +44,25 @@ public class US012 {
         actions.sendKeys(Keys.TAB).sendKeys(ConfigReader.getProperty("pasword")).sendKeys(Keys.TAB).sendKeys(Keys.TAB)
                 .sendKeys(Keys.TAB).sendKeys(Keys.ENTER).perform();
         Thread.sleep(6000);
+        actions.sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_DOWN).perform();
+        Thread.sleep(2000);
         Driver.getDriver().get(ConfigReader.getProperty("myAccount"));
         Thread.sleep(4000);
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+        Thread.sleep(2000);
         project17Page.orderButton.click();
+        Thread.sleep(3000);
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
         Thread.sleep(2000);
         Assert.assertTrue(project17Page.orderText.isDisplayed());
-        Driver.closeDriver();
+        Driver.quitDriver();
     }
 
     @Test
     public void test003() throws InterruptedException {
         Driver.getDriver().get(ConfigReader.getProperty("project17Url"));
         Thread.sleep(2000);
-        Project17Page project17Page= new Project17Page();
+        Project17Page project17Page = new Project17Page();
         Thread.sleep(2000);
         project17Page.singin.click();
         Thread.sleep(2000);
@@ -63,12 +72,16 @@ public class US012 {
         actions.sendKeys(Keys.TAB).sendKeys(ConfigReader.getProperty("pasword")).sendKeys(Keys.TAB).sendKeys(Keys.TAB)
                 .sendKeys(Keys.TAB).sendKeys(Keys.ENTER).perform();
         Thread.sleep(6000);
+        actions.sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_DOWN).perform();
+        Thread.sleep(2000);
         Driver.getDriver().get(ConfigReader.getProperty("myAccount"));
         Thread.sleep(4000);
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+        Thread.sleep(2000);
         project17Page.downloadButton.click();
         Thread.sleep(4000);
         Assert.assertTrue(project17Page.downloadtest.isDisplayed());
-        Driver.closeDriver();
+        Driver.quitDriver();
 
     }
 
@@ -76,7 +89,7 @@ public class US012 {
     public void test004() throws InterruptedException {
         Driver.getDriver().get(ConfigReader.getProperty("project17Url"));
         Thread.sleep(2000);
-        Project17Page project17Page= new Project17Page();
+        Project17Page project17Page = new Project17Page();
         Thread.sleep(2000);
         project17Page.singin.click();
         Thread.sleep(2000);
@@ -86,20 +99,26 @@ public class US012 {
         actions.sendKeys(Keys.TAB).sendKeys(ConfigReader.getProperty("pasword")).sendKeys(Keys.TAB).sendKeys(Keys.TAB)
                 .sendKeys(Keys.TAB).sendKeys(Keys.ENTER).perform();
         Thread.sleep(6000);
+        actions.sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_DOWN).perform();
+        Thread.sleep(2000);
         Driver.getDriver().get(ConfigReader.getProperty("myAccount"));
         Thread.sleep(4000);
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+        Thread.sleep(2000);
         project17Page.adressButton.click();
         Thread.sleep(4000);
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+        Thread.sleep(2000);
         Assert.assertTrue(project17Page.adresstest.isDisplayed());
-        Driver.closeDriver();
+        Driver.quitDriver();
     }
 
     @Test
     public void test005() throws InterruptedException {
-        Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+
         Driver.getDriver().get(ConfigReader.getProperty("project17Url"));
         Thread.sleep(3000);
-        Project17Page project17Page= new Project17Page();
+        Project17Page project17Page = new Project17Page();
         Thread.sleep(3000);
         project17Page.singin.click();
         Thread.sleep(3000);
@@ -136,12 +155,10 @@ public class US012 {
         Thread.sleep(4000);
         actions.sendKeys(Keys.TAB).sendKeys(ConfigReader.getProperty("lastName")).sendKeys(Keys.TAB).sendKeys(ConfigReader.getProperty("displayName"))
                 .sendKeys(Keys.ENTER).perform();
-        Driver.closeDriver();
-
+        Driver.quitDriver();
 
 
     }
-
 
 
 }
