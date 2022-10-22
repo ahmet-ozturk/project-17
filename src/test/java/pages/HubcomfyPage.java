@@ -102,4 +102,6 @@ public class HubcomfyPage {
     @FindBy(xpath = "//*[@id='wcfm_membership_register_button']")
     public WebElement registerButton;
 
+
+
 }
