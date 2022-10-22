@@ -1,5 +1,6 @@
 package tests.project_17.mustafa;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
@@ -25,14 +26,11 @@ public class US_13_14_15 {
         Thread.sleep(3000);
         us.ilk_sing_out_button.click();
         us.stor_manager_button.click();
-        act.sendKeys(Keys.PAGE_DOWN).perform();
-
-        Thread.sleep(3);
-
-
-        us.cponus_button.click();
-        act.sendKeys(Keys.PAGE_DOWN).perform();
-        us.add_new_button.sendKeys(Keys.ENTER);
+        JavascriptExecutor jse = (JavascriptExecutor) Driver.getDriver();
+        jse.executeScript("arguments[0].scrollIntoView(true);", us.cponus_button);
+        jse.executeScript("arguments[0].click();",us.cponus_button);
+        // us.cponus_button.click();
+        us.add_new_button.click();
         act.sendKeys(Keys.ARROW_DOWN)
                 .sendKeys(Keys.ARROW_DOWN)
                 .sendKeys(Keys.ARROW_DOWN)
@@ -50,14 +48,10 @@ public class US_13_14_15 {
         Thread.sleep(1000);
         us.gecerli_tarih.click();
         us.free_shipping_chekbox.click();
-
-        act.sendKeys(Keys.PAGE_DOWN).perform();
-        Thread.sleep(2000);
-        us.show_on_store_chekbox.click();
-
+        Thread.sleep(1000);
         act.sendKeys(Keys.PAGE_DOWN).perform();
         us.show_on_store_chekbox.click();
-        act.moveToElement(us.kupon_kaydetme_buttonu).perform();
+
 
     }
 
