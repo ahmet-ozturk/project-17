@@ -18,12 +18,6 @@ public class Project17Page {
     @FindBy (xpath = "//*[@id='username']")
     public WebElement username;
 
-    @FindBy (xpath = "//*[@id='password']")
-    public WebElement password;
-
-    @FindBy (xpath = "//*[@name='login']")
-    public WebElement singiButton;
-
     @FindBy (xpath = "//*[text()='Sign Out']")
     public WebElement girisYapildi;
 
@@ -42,9 +36,6 @@ public class Project17Page {
     public WebElement adressButton;
     @FindBy (xpath = "//*[@class='woocommerce-Addresses addresses row']")
     public WebElement adresstest;
-
-    @FindBy (xpath = "//*[@class='icon-box-icon icon-account']")
-    public WebElement accountDetailsButton;
 
     @FindBy (xpath = "//*[@id='account_display_name']")
     public WebElement accountDetailChange;
@@ -69,4 +60,14 @@ public class Project17Page {
 
     @FindBy (xpath = "//*[@class='orderby form-control']")
     public WebElement shortByButton;
+
+    @FindBy (xpath = "//*[@class='products row cols-lg-3 cols-md-3 cols-sm-2 cols-2']")
+    public WebElement fiyatDusuktenYuksegeSiraliGoruntusu;
+
+    @FindBy (xpath = "//*[@class='product-archive']")
+    public WebElement fiyatYuksektenDusugeSiraliGoruntusu;
+
+    @FindBy (xpath = "//*[@class='orderby form-control']")
+    public WebElement dropDownList;
+
 }
