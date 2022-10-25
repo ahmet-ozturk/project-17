@@ -10,11 +10,10 @@
 -->
 
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="istenen class'lari calistirma">
+<suite name="istenen class'lari calistirma(smoke test)">
     <test name="class'lar">
         <classes>
-            <class name="tests.day16.C03_Priority"/>
-            <class name="tests.day17.C03_SoftAssert"/>
+            <class name="tests.project_17.ibrahim.ProjeStok"/>
         </classes>
     </test>
 </suite>
