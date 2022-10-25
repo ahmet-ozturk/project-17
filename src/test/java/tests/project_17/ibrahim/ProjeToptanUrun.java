@@ -1,7 +1,9 @@
-package tests.project_17.ibrahim;
+package tests.Odevler;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -62,10 +64,23 @@ public class ProjeToptanUrun {
         projePage.minorderqtytr.clear();
         projePage.minorderqtytr.sendKeys("2");
 
-
+        Thread.sleep(2000);
         projePage.submit.click();
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(3));
+        //Thread.sleep(3000);
+
+        //WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(5));
+        //wait.until(ExpectedConditions.visibilityOf(projePage.popUpMessage));
+        // wait.until(ExpectedConditions.alertIsPresent()); -->
+        //         wait.until(ExpectedConditions.elementToBeClickable(enableKutusu);
+        // wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("locate adresi"));
+        // wait.until(ExpectedConditions.refreshed();
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(projePage.popUpMessage));
+
+        System.out.println("submit onay yazisi="+projePage.popUpMessage.getText());
+        //String actualText = projePage.popUpMessage.getText();
+        //String expectedText = "Product Successfully Published.";
+        //Assert.assertEquals(expectedText,actualText);
         Assert.assertTrue(projePage.popUpMessage.isDisplayed());
         //Driver.closeDriver();
 
