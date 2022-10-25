@@ -1,4 +1,4 @@
-package tests.Odevler;
+package tests.project_17.ibrahim;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
