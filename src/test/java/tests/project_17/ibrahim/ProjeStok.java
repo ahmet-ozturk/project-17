@@ -1,4 +1,4 @@
-package tests.Odevler;
+package tests.project_17.ibrahim;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;

@@ -13,8 +13,7 @@
 <suite name="istenen class'lari calistirma">
     <test name="class'lar">
         <classes>
-            <class name="tests.day16.C03_Priority"/>
-            <class name="tests.day17.C03_SoftAssert"/>
+            <class name="tests.project_17.ibrahim.ProjeStok"/>
         </classes>
     </test>
 </suite>
