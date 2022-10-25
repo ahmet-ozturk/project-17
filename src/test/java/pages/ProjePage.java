@@ -18,7 +18,6 @@ public class ProjePage {
     @FindBy(xpath ="//a[text()='My Account']")
     public WebElement myaccount;
 
-
     @FindBy(xpath = "//*[text()='Store Manager']")
     public WebElement storeManager;
 
