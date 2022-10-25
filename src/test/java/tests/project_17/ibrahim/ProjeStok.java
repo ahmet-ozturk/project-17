@@ -9,21 +9,26 @@ import org.testng.annotations.Test;
 import pages.ProjePage;
 import utilities.ConfigReader;
 import utilities.Driver;
+import utilities.TestBaseRapor;
 
 import java.time.Duration;
 
-public class ProjeStok {
+public class ProjeStok extends TestBaseRapor {
     Actions actions = new Actions(Driver.getDriver());
     JavascriptExecutor executor=(JavascriptExecutor)Driver.getDriver();
-
     @Test
     public void testProjeAnaSayfa() throws InterruptedException {
+        extentTest=extentReports.createTest("Pozitif Test","Urun miktarı stock belirlenmeli, Backorder izni verebilmeli, gecici verilmeme optionu olmalı veya verilmeli ama müşteri bilgilendirilmeli");
+
         Driver.getDriver().get(ConfigReader.getProperty("hub"));
+        extentTest.info("1- Hubcomfy sitesine gidildi");
         ProjePage projePage = new ProjePage();
         projePage.signIn.click();
         projePage.username.sendKeys(ConfigReader.getProperty("hubEmail"));
+
+        extentTest.info("2- Vendor acilan pencereden sign in simgesine tiklar");
         actions.sendKeys(Keys.TAB).sendKeys(ConfigReader.getProperty("hubPassword")).sendKeys(Keys.ENTER).perform();
-        //.sendKeys(Keys.TAB).sendKeys(Keys.TAB).sendKeys(Keys.TAB).sendKeys(Keys.ENTER).perform();
+        extentTest.info("3- Vendor username or email address alanina gecerli bir kullanici adi veya email girer");
         actions.sendKeys(Keys.PAGE_DOWN).
                 sendKeys(Keys.PAGE_DOWN).perform();
         try {
@@ -31,65 +36,59 @@ public class ProjeStok {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        //Driver.getDriver().switchTo().newWindow(WindowType.TAB);//yeni sekmede açar.
-        //Driver.getDriver().get("https://hubcomfy.com/my-account-2/");
+        extentTest.info("4- Vendor acilan sayfada 'My Account' simgesine tiklar");
 
         executor.executeScript("arguments[0].click();",projePage.myaccount);
 
-
-        //projePage.myaccount.click();
-
         projePage.storeManager.click();
+        extentTest.info("5- Vendor Store Manager baslikli simgeyi tiklar");
+
         projePage.product.click();
+        extentTest.info("6- Vendor acilan yeni sayfada 'Products' basligini tiklar");
         actions.sendKeys(Keys.PAGE_DOWN).perform();
-
-        //ürün ekleme kısmı
-        //projePage.addNew.click();
-        //Thread.sleep(2000);
-        //Select select = new Select(projePage.simpleProduct);
-        //String product="Simple Product";
-        //select.selectByVisibleText(product);
-        //Thread.sleep(3000);
-
-        // actions.sendKeys(Keys.PAGE_DOWN).perform();
-        //Thread.sleep(2000);
-        // projePage.title.sendKeys("Kampsandalyesi");
         projePage.kampSandalyesiButonu.click();
+
+        extentTest.info("7- Vendor bir urunun uzerine tiklar");
         Thread.sleep(3000);
         actions.sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_DOWN).perform();
         projePage.stockQuantity.clear();
+
+        extentTest.info("8- Vendor stockQuantity uzerine tiklar");
         projePage.stockQuantity.sendKeys("9");
         if (!projePage.doNotAllow.isSelected()) {
             projePage.doNotAllow.click();
+            extentTest.info("9- Vendor \"Do not Allow\" opsiyonunu secer");
         }
         if (!projePage.allow.isSelected()) {
             projePage.allow.click();
+            extentTest.info("10- Allow, but notify customer opsiyonunu secer");
         }
 
         if (!projePage.allowButNotifyCustomer.isSelected()) {
             projePage.allowButNotifyCustomer.click();
+            extentTest.info("11- \"Allow\" opsiyonunu secer");
         }
+        //actions.sendKeys(Keys.PAGE_DOWN).perform();
+        //Thread.sleep(2000);
+        executor.executeScript("arguments[0].scrollIntoView(true);",projePage.submit);
+        executor.executeScript("arguments[0].click();",projePage.submit);
 
-        //projePage.backorders.click();
-        //projePage.backorders.sendKeys("Allow");
-        Thread.sleep(3000);
-        //WebElement ddm = Driver.getDriver().findElement(By.xpath("//select[@id='backorders']"));
-        //Select select = new Select(ddm);
-        //select.selectByIndex(0);//Allow,but notify customer  Allow   Do not Allow
-        // Thread.sleep(3000);
-        actions.sendKeys(Keys.PAGE_DOWN).perform();
-        Thread.sleep(4000);
-       // projePage.submit.click();
-       executor.executeScript("arguments[0].click();",projePage.submit);
-        //Thread.sleep(1000);
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(4));
+        extentTest.info("12- submit butonunu secer");
+        //WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),10);
+        //WebElement mesajGör=wait.until(ExpectedConditions.visibilityOf(projePage.popUpMessage));
         wait.until(ExpectedConditions.visibilityOf(projePage.popUpMessage));
+        extentTest.info("13- Product Successfully Published yazisini cikttigini dogrular");
 
-        Assert.assertTrue(projePage.popUpMessage.isDisplayed());
-        //System.out.println(projePage.stockQuantity.getText());
-        //WebElement value =Driver.getDriver().findElement(By.xpath("//input[@value='9']"));
-        //Assert.assertEquals("9", value.getText());
-        //Assert.assertTrue(projePage.stockQuantity.isDisplayed());
 
+        System.out.println("submit onay yazisi="+projePage.popUpMessage.getText());
+        String actualText = projePage.popUpMessage.getText();
+        String expectedText = "Product Successfully Published.";
+        Assert.assertEquals(expectedText,actualText);
+
+        // Assert.assertTrue(projePage.popUpMessage.isDisplayed());
+
+        extentTest.info("14- sayfayi kapatir");
+        //Driver.closeDriver();
     }
 }
