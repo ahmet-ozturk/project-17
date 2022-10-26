@@ -7,8 +7,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="com.Batch81TestNG - Kopya" />
+        <module name="pr" />
         <module name="com.Batch81TestNG" />
+
         <module name="proje 17 github" />
+
+        <module name="proje-17" />
+        <module name="Proje17" />
+
         <module name="com.project17_TestNG" />
       </profile>
     </annotationProcessing>

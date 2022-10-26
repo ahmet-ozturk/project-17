@@ -105,6 +105,7 @@ public class HubcomfyPage {
     @FindBy(xpath = "//*[@id='wcfm_membership_register_button']")
     public WebElement registerButton;
 
+
     @FindBy(xpath = "//*[text()='Shop']")
     public WebElement goshoptext;
 
@@ -140,6 +141,7 @@ public class HubcomfyPage {
 
     @FindBy (xpath = "(//*[@class='current'])[1]")
     public WebElement OrderCompleteButon;
+
 
 
 
