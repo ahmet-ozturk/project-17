@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="com.Batch81TestNG - Kopya" />
         <module name="com.Batch81TestNG" />
+        <module name="proje 17 github" />
         <module name="com.project17_TestNG" />
       </profile>
     </annotationProcessing>

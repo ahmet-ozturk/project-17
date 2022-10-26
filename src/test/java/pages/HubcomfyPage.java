@@ -57,6 +57,9 @@ public class HubcomfyPage {
     @FindBy(xpath = "//*[@class=\"icon-box-icon icon-orders\"]")
     public WebElement orders;
 
+    @FindBy(xpath = "//*[@class='btn btn-dark btn-rounded btn-icon-right continue-shopping mb-4 mt-6']")
+    public WebElement goshop;
+
     @FindBy(xpath = "//*[@class=\"icon-box-icon icon-downloads\"]")
     public WebElement downloads;
 
@@ -101,5 +104,44 @@ public class HubcomfyPage {
 
     @FindBy(xpath = "//*[@id='wcfm_membership_register_button']")
     public WebElement registerButton;
+
+    @FindBy(xpath = "//*[text()='Shop']")
+    public WebElement goshoptext;
+
+    @FindBy (xpath = "(//*[@class='product-wrap'])[1]")
+    public  WebElement urun1Buton;
+
+    @FindBy (xpath = "(//*[@class='product-wrap'])[2]")
+    public  WebElement urun2Buton;
+
+    @FindBy (xpath = "(//*[@class='product-wrap'])[3]")
+    public  WebElement urun3Buton;
+
+    @FindBy (xpath = "(//*[@class='product-wrap'])[7]")
+    public  WebElement urun4Buton;
+
+    @FindBy (xpath = "(//*[@class='product-wrap'])[10]" )
+    public  WebElement urun5Buton;
+
+    @FindBy (xpath = "(//*[@class='btn-product-icon product_type_simple product_read_more'])[1]")
+    public  WebElement urunStockOutButon;
+
+   @FindBy (xpath = "//*[@class='single_add_to_cart_button button alt']")
+    public WebElement addButon;
+
+    @FindBy (xpath = "(//*[@class='w-icon-cart'])[1]")
+    public WebElement cartButon;
+
+    @FindBy (xpath = "//*[@class='button checkout wc-forward']")
+    public WebElement checkoutButon;
+
+    @FindBy (xpath = "//*[@name='woocommerce_checkout_place_order']")
+    public WebElement placeOrderButon;
+
+    @FindBy (xpath = "(//*[@class='current'])[1]")
+    public WebElement OrderCompleteButon;
+
+
+
 
 }
