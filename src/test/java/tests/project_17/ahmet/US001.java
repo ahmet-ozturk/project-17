@@ -50,6 +50,8 @@ public class US001 extends TestBaseRapor {
 
         ReusableMethods.waitFor(1);
 
+        extentTest.info("Register navigate edildi");
+
     }
 
     @Test
