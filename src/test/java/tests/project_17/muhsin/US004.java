@@ -160,9 +160,9 @@ public class US004 {
         WebElement urunRakami2=Driver.getDriver().findElement(By.xpath("(//*[@class='input-text qty text'])[2]"));
         Thread.sleep(1000);
 
-        String expected1="2";
-        String actualy1= urunRakami2.getText();
-        Assert.assertTrue(expected1.contains(actualy1));
+       // String expected1="2";
+       // String actualy1= urunRakami2.getText();
+        Assert.assertNotEquals(urunRakami2.getText(),"1");
 
         Thread.sleep(1000);
         actions.sendKeys(Keys.PAGE_DOWN).perform();
@@ -173,9 +173,9 @@ public class US004 {
 
         Thread.sleep(1000);
 
-        String expected2="2";
-        String actualy2= urunRakami3.getText();
-        Assert.assertTrue(expected2.contains(actualy2));
+       // String expected2="2";
+       // String actualy2= urunRakami3.getText();
+        Assert.assertNotEquals(urunRakami3.getText(),"1");
 
         Thread.sleep(1000);
 
@@ -183,9 +183,9 @@ public class US004 {
         WebElement urunRakami4=Driver.getDriver().findElement(By.xpath("(//*[@class='input-text qty text'])[4]"));
         Thread.sleep(1000);
 
-        String expected3="2";
-        String actualy3= urunRakami4.getText();
-        Assert.assertTrue(expected3.contains(actualy3));
+       // String expected3="2";
+        //String actualy3= urunRakami4.getText();
+        Assert.assertNotEquals(urunRakami4.getText(),"1");
 
          //actions.sendKeys(Keys.PAGE_DOWN).perform();
         Thread.sleep(1000);
@@ -199,19 +199,18 @@ public class US004 {
         WebElement urunRakami5=Driver.getDriver().findElement(By.xpath("(//*[@class='input-text qty text'])[5]"));
         Thread.sleep(1000);
 
-        String expected4="2";
-        String actualy4= urunRakami5.getText();
-        Assert.assertTrue(expected4.contains(actualy4));
+       // String expected4="2";
+       // String actualy4= urunRakami5.getText();
+        Assert.assertNotEquals(urunRakami5.getText(),"1");
 
         Thread.sleep(3000);
 
         //vendor QUANTİTY başlığı altında - butona tıklar //vendor urun rakamının azaldığını görür
         Driver.getDriver().findElement(By.xpath("(//*[@class='quantity-minus w-icon-minus'])[5]")).click();
         Thread.sleep(1000);
-        String expected5="3";
-        String actualy5= urunRakami5.getText();
-        Assert.assertTrue(expected5.contains(actualy5));
-
+       // String expected5="3";
+        //String actualy5= urunRakami5.getText();
+        Assert.assertNotEquals(urunRakami5.getText(),"4");
 
 
         //TC_004
