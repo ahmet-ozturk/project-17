@@ -14,7 +14,6 @@ import utilities.Driver;
 import java.util.ArrayList;
 
 public class US003 {
-
     Actions actions = new Actions(Driver.getDriver());
 
     HubcomfyPage hubcomfy = new HubcomfyPage();
@@ -118,15 +117,21 @@ public class US003 {
         Thread.sleep(2000);
         hubcomfy.urunStockOutButon.click();
         Thread.sleep(2000);
+
         //vendor tıkladığı out of stock urunun açıldığı sayfada ADD TO CART butonunu göremez
-        Assert.assertTrue(hubcomfy.addButon.isEnabled());
+        WebElement notAddButon=Driver.getDriver().findElement(By.xpath("//*[@class='summary entry-summary']"));
+        Assert.assertFalse(notAddButon.getText().contains("ADD TO CART"));
         Driver.getDriver().navigate().back();
-        Thread.sleep(1000);
+        Thread.sleep(2000);
+        actions.sendKeys(Keys.PAGE_UP).perform();
 
         //TC004
 
         //vendor Cart botonuna tıklar
+        Thread.sleep(2000);
         hubcomfy.cartButon.click();
+        Thread.sleep(2000);
+
         //vendor açılan SHOPPING CART sayfasında seçtiği 5 ürünü görür
         Driver.getDriver().
                 findElement(By.xpath(
@@ -148,43 +153,43 @@ public class US003 {
         hubcomfy.checkoutButon.click();
 
         //TC005
-
+        Thread.sleep(1000);
         //vendor first name butonunda ismini görür
-       String name= Driver.getDriver().findElement(By.id("billing_first_name")).getText();
-       name.equals("ahmet");
-
-       //vendor last name butonunda soyismini görür
+        String name= Driver.getDriver().findElement(By.id("billing_first_name")).getText();
+        name.equals("ahmet");
+        Thread.sleep(1000);
+        //vendor last name butonunda soyismini görür
         String lasTname= Driver.getDriver().findElement(By.id("billing_last_name")).getText();
         lasTname.equals("ozturk");
-
+        Thread.sleep(1000);
         //vendor company name butonunda şirket ismini görür
         String comPanyName= Driver.getDriver().findElement(By.id("billing_company")).getText();
         comPanyName.equals("testSipariş1");
-
+        Thread.sleep(1000);
         //vendor country/region butonunda ülke ismini görür
         String counTryName= Driver.getDriver().findElement(By.id("select2-billing_country-container")).getText();
         counTryName.equals("Turkey");
-
+        Thread.sleep(1000);
         //vendor street adress butonunda  adres bilgilerini görür
         String streetAdress= Driver.getDriver().findElement(By.id("billing_address_1")).getText();
         streetAdress.equals("akkakent mah karanfil sok");
-
+        Thread.sleep(1000);
         //vendor postcode butonunda posta kodunu görür
         String postCode= Driver.getDriver().findElement(By.id("billing_first_name")).getText();
         postCode.equals("012222");
-
+        Thread.sleep(1000);
         //vendor town/city butonunda bölge ismini görür
         String toWmName= Driver.getDriver().findElement(By.xpath("//*[@id='billing_city']")).getText();
         toWmName.equals("ahmet");
-
+        Thread.sleep(1000);
         //vendor province butonunda şehir ismini görür
         String ciTyName= Driver.getDriver().findElement(By.id("select2-billing_state-container")).getText();
         ciTyName.equals("Kütahya");
-
+        Thread.sleep(1000);
         //vendor phone butonunda telefon numarasını görür
         String pHoneNumber= Driver.getDriver().findElement(By.id("billing_phone")).getText();
         pHoneNumber.equals("ahmet");
-
+        Thread.sleep(1000);
         //vendor e-mail butonunda e mail adresini görür
         String mAil= Driver.getDriver().findElement(By.id("billing_email")).getText();
         mAil.equals("ahmetozturk.qa@gmail.com");
@@ -195,9 +200,9 @@ public class US003 {
         //vendor place order butonuna tıklar
         // "thank you.your order has been received" yazısı ile order yapılabildiğini görür
         actions.sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_DOWN).perform();
-       hubcomfy.placeOrderButon.sendKeys(Keys.ENTER);
+        hubcomfy.placeOrderButon.sendKeys(Keys.ENTER);
         Thread.sleep(3000);
-       hubcomfy.OrderCompleteButon.isDisplayed();
+        hubcomfy.OrderCompleteButon.isDisplayed();
 
 
 
