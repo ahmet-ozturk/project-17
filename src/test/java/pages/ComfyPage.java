@@ -124,9 +124,11 @@ public class ComfyPage {
     @FindBy(xpath = "(//*[@value='412'])[1]")
     public WebElement brandTik;
 
+    @FindBy(xpath = "//*[@id='wcfm_products_simple_draft_button']")
+    public WebElement draft;
 
-
-
+    @FindBy(xpath = "//*[.='Product Manager -LAPTOP-NUDTQMN4']")
+    public WebElement eklenenUrunLink;
 
 
 }
