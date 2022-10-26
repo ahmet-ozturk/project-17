@@ -153,7 +153,17 @@ public class US_005 {
                         "Sistem Turu : 64 bit işletim sistemi, x64 tabanlı işlemci").perform();
 
 
-        //submit butonuna tiklar
+
+
+
+        //Draft butonuna tiklar
+       /* JavascriptExecutor jse = (JavascriptExecutor) Driver.getDriver();
+        jse.executeScript("arguments[0].scrollIntoView(true);",hubcomfyPage.draft);
+
+        JavascriptExecutor jse2 = (JavascriptExecutor) Driver.getDriver();
+        jse2.executeScript("arguments[0].click();",hubcomfyPage.draft);*/
+
+
 
         //basari ile urun eklendi mesajini goruru
 

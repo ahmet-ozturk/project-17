@@ -11,11 +11,12 @@ import pages.ComfyPage;
 import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.ReusableMethods;
+import utilities.TestBaseRapor;
 
 import java.io.IOException;
 import java.util.List;
 
-public class US_007 {
+public class US_007 extends TestBaseRapor {
 
     ComfyPage hubcomfyPage = new ComfyPage();
 
@@ -24,35 +25,42 @@ public class US_007 {
     @Test
     public void testUS_007() throws InterruptedException, IOException {
 
+        extentTest = extentReports.createTest("PozitifTest", "Story Manager Olarak urun eklendi");
 
 
         //Store Manager  https://hubcomfy.com/ adresine gider
         Driver.getDriver().get(ConfigReader.getProperty("hubcomfyUrl"));
+        extentTest.info("hubcomfyUrl sitesine gidildi");
 
         //Sign-in sekmesine tiklar
         hubcomfyPage.signIn.click();
+        extentTest.info("singin butonuna tiklandi");
 
         //Store Manager  olarak gecerli Username girer
         actions.click(hubcomfyPage.userNameEmail).sendKeys(ConfigReader.getProperty("hubcomfyEmail")).perform();
+        extentTest.info("gecerli email girildi");
+
 
         //Store Manager  olarak gecerli Password girer
         actions.sendKeys(Keys.TAB).sendKeys(ConfigReader.getProperty("hubcomfyPassword")).perform();
+        extentTest.info("gecerli password girildi");
+
 
         //Sign-in butonuna tiklar
         actions.sendKeys(Keys.TAB).sendKeys(Keys.TAB).sendKeys(Keys.TAB).sendKeys(Keys.ENTER).perform();
         hubcomfyPage.signOut.click();
+        extentTest.info("signIn botonuna tiklandi");
 
         //Store Manager sekmesine tiklar
         hubcomfyPage.storyManager.click();
+        extentTest.info("Story manager sekmesine tiklandi");
 
         //Products sekmesine tiklar
         actions.sendKeys(Keys.PAGE_DOWN).perform();
         Thread.sleep(2000);
 
         hubcomfyPage.productsSekme.click();
-
-
-
+        extentTest.info("Product sekmesine tiklandi");
 
         //Store Manager status,stock,price,date görünürlügünü doğrular
         List<WebElement> status = hubcomfyPage.status;
@@ -69,6 +77,7 @@ public class US_007 {
         List<WebElement> date = hubcomfyPage.date;
         date.forEach(t -> System.out.println(t.getText()));
         Assert.assertTrue(!status.isEmpty());
+        extentTest.info("urunler (status,price date olarak) goruntulendi");
 
 
         //Acilan sayfada  Add New butonuna tıklar.
@@ -76,24 +85,30 @@ public class US_007 {
         ReusableMethods.getScreenshot("products resim");
         Thread.sleep(2000);
         hubcomfyPage.addNew.click();
+        extentTest.info("Urunlerin oldugu sayfanin Resmi alindi ");
 
         //Acilan sayfada virtual secenegini secer
         Thread.sleep(2000);
         actions.sendKeys(Keys.PAGE_DOWN).perform();
         Thread.sleep(2000);
         actions.moveToElement(hubcomfyPage.virtual).click().perform();
+        extentTest.info("Virtual secenegi secildi");
 
         //Acilan sayfada Downloadable secenegini secer
         actions.moveToElement(hubcomfyPage.downloadable).click().perform();
+        extentTest.info("Downloadable secenegi secildi");
 
         //Product Title kısmına  urun ismini girer
         actions.click(hubcomfyPage.producTitle).sendKeys("LAPTOP-NUDTQMN4").perform();
+        extentTest.info("Title kısmına urun ismini girildi");
 
         //Price kismina urun  fiyatini girer
         actions.click(hubcomfyPage.price).sendKeys("500").perform();
+        extentTest.info("Price kismina Urun fiyati girildi");
 
         //Sale Price kismina Urun indirimli  fiyatini girer
         actions.click(hubcomfyPage.salePrice).sendKeys("450").perform();
+        extentTest.info("SalePrice kismina Urun fiyati girildi");
 
         //Urun fotosu ekler
         //Sağdaki boş image kismina  tıklar.
@@ -110,6 +125,7 @@ public class US_007 {
                 sendKeys(Keys.TAB).sendKeys("Windows 11 Home Single Language").
                 sendKeys(Keys.TAB).sendKeys("LAPTOP-NUDTQMN4,MateBook D 15").
                 sendKeys(Keys.TAB).sendKeys(Keys.TAB).sendKeys(Keys.TAB).sendKeys(Keys.TAB).sendKeys(Keys.ENTER).perform();
+        extentTest.info("Urun icin foto eklendi");
 
         //acilan sayfada yan taraf daki kucuk bos image sayfasina tiklar
         //Acilan pencerede urun icin bir foto secer
@@ -127,6 +143,7 @@ public class US_007 {
                 sendKeys(Keys.TAB).sendKeys("Windows 11 Home Single Language").
                 sendKeys(Keys.TAB).sendKeys("LAPTOP-NUDTQMN4,MateBook D 15").
                 sendKeys(Keys.TAB).sendKeys(Keys.TAB).sendKeys(Keys.TAB).sendKeys(Keys.TAB).sendKeys(Keys.ENTER).perform();
+        extentTest.info("Urun icin galeriye foto eklendi");
 
         Thread.sleep(3000);
 
@@ -145,6 +162,7 @@ public class US_007 {
         actions.click(hubcomfyPage.sortDescriptions).sendKeys("LAPTOP-NUDTQMN4,MateBook D 15").perform();
         Thread.sleep(3000);
         Driver.getDriver().switchTo().defaultContent();
+        extentTest.info("Urun hakkinda kisa tanimlama yapildi");
 
         Driver.getDriver().switchTo().frame(iframeList.get(1));
         Thread.sleep(3000);
@@ -157,16 +175,19 @@ public class US_007 {
         // katagori kismindan "Elektrik & Elektronik"  kismini secebilmeli
         Driver.getDriver().switchTo().defaultContent();
         Thread.sleep(5000);
+        extentTest.info("Urun hakkinda genis tanimlama yapildi ");
 
         // katagori kismindan "Elektrik & Elektronik"  kismini secebilmeli
         actions.click(hubcomfyPage.categoriesKutu).perform();
         JavascriptExecutor jse1 = (JavascriptExecutor) Driver.getDriver();
-        jse1.executeScript("arguments[0].click();",hubcomfyPage.electronic);
+        jse1.executeScript("arguments[0].click();", hubcomfyPage.electronic);
+        extentTest.info("Kategori kismindan elektronik secenegi secildi");
 
         //Urun markasinin huawei oldugunu belirleyebilmeli
         actions.click(hubcomfyPage.brandKutu).perform();
         JavascriptExecutor jse2 = (JavascriptExecutor) Driver.getDriver();
-        jse2.executeScript("arguments[0].click();",hubcomfyPage.brandTik);
+        jse2.executeScript("arguments[0].click();", hubcomfyPage.brandTik);
+        extentTest.info("Urun markasi secildi");
 
 
         /*List<WebElement> categoriBrand =hubcomfyPage.categories;
@@ -176,10 +197,22 @@ public class US_007 {
                 categoriBrand.get(i).click();
 
             }
-
-
         }
 */
+        //Draft butonuna tiklar
+        Thread.sleep(3000);
+        JavascriptExecutor jse = (JavascriptExecutor) Driver.getDriver();
+        jse.executeScript("arguments[0].scrollIntoView(true);", hubcomfyPage.draft);
+        Thread.sleep(4000);
+
+        JavascriptExecutor jse3 = (JavascriptExecutor) Driver.getDriver();
+        jse3.executeScript("arguments[0].click();", hubcomfyPage.draft);
+        Thread.sleep(2000);
+
+
+        //basari ile urun eklendi mesajini goruru
+        Assert.assertTrue(hubcomfyPage.eklenenUrunLink.isDisplayed());
+        extentTest.info("Urunun basarili sekilde eklendigi goruntulendi");
 
 
     }
