@@ -33,7 +33,7 @@ public class ProjePage {
     @FindBy(xpath = "//*[@id='pro_title']")
     public WebElement title;
 
-    @FindBy(xpath = "(//*[@class='wcfm_product_title'])[3]")
+    @FindBy(xpath = "(//*[@class='wcfm_product_title'])[14]")
     public WebElement kampSandalyesiButonu;
 
     @FindBy(xpath = "//input[@id='stock_qty']")

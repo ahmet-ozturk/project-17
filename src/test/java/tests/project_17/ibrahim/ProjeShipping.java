@@ -17,6 +17,7 @@ import java.time.Duration;
 
 public class ProjeShipping {
     Actions actions = new Actions(Driver.getDriver());
+    JavascriptExecutor executor=(JavascriptExecutor)Driver.getDriver();
     @Test
     public void testProjeAnaSayfa() throws InterruptedException {
         Driver.getDriver().get(ConfigReader.getProperty("hub"));
@@ -32,12 +33,15 @@ public class ProjeShipping {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        JavascriptExecutor executor=(JavascriptExecutor)Driver.getDriver();
+       // JavascriptExecutor executor=(JavascriptExecutor)Driver.getDriver();
         executor.executeScript("arguments[0].click();",projePage.myaccount);
         projePage.storeManager.click();
         projePage.product.click();
-        actions.sendKeys(Keys.PAGE_DOWN).perform();
-        projePage.kampSandalyesiButonu.click();
+        executor.executeScript("arguments[0].scrollIntoView(true);",projePage.kampSandalyesiButonu);
+        executor.executeScript("arguments[0].click();",projePage.kampSandalyesiButonu);
+
+      //  actions.sendKeys(Keys.PAGE_DOWN).perform();
+      //  projePage.kampSandalyesiButonu.click();
         Thread.sleep(3000);
         actions.sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_DOWN).perform();
         Thread.sleep(3000);
@@ -62,7 +66,7 @@ public class ProjeShipping {
         wait.until(ExpectedConditions.visibilityOf(projePage.popUpMessage));
 
 
-        System.out.println("submit onay yazisi="+projePage.popUpMessage.getText());
+        //System.out.println("submit onay yazisi="+projePage.popUpMessage.getText());
         // String actualText = projePage.popUpMessage.getText();
         // String expectedText = "Product Successfully Published.";
         // Assert.assertEquals(expectedText,actualText);

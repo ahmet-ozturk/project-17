@@ -16,6 +16,7 @@ import java.time.Duration;
 
 public class ProjeAttributes {
     Actions actions = new Actions(Driver.getDriver());
+    JavascriptExecutor executor=(JavascriptExecutor)Driver.getDriver();
     @Test
     public void testProjeAnaSayfa() throws InterruptedException {
         Driver.getDriver().get(ConfigReader.getProperty("hub"));
@@ -36,9 +37,8 @@ public class ProjeAttributes {
 
         projePage.storeManager.click();
         projePage.product.click();
-        actions.sendKeys(Keys.PAGE_DOWN).perform();
-
-        projePage.kampSandalyesiButonu.click();
+        executor.executeScript("arguments[0].scrollIntoView(true);",projePage.kampSandalyesiButonu);
+        executor.executeScript("arguments[0].click();",projePage.kampSandalyesiButonu);
         Thread.sleep(3000);
         actions.sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_DOWN).perform();
         Thread.sleep(3000);
@@ -47,8 +47,8 @@ public class ProjeAttributes {
         projePage.submit.click();
 
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
-        WebElement mesajGör=wait.until(ExpectedConditions.visibilityOf(projePage.popUpMessage));
-        System.out.println("submit onay yazisi="+projePage.popUpMessage.getText());
+        wait.until(ExpectedConditions.visibilityOf(projePage.popUpMessage));
+
 
         //Assert.assertTrue(mesajGör.isDisplayed());
 
@@ -56,7 +56,7 @@ public class ProjeAttributes {
         String actualText = projePage.popUpMessage.getText();
         String expectedText = "Product Successfully Published.";
         Assert.assertEquals(expectedText,actualText);
-
+        System.out.println("submit onay yazisi="+projePage.popUpMessage.getText());
         //Driver.closeDriver();
 
     }

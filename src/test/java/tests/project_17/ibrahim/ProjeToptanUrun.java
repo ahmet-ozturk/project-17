@@ -17,6 +17,7 @@ import java.time.Duration;
 
 public class ProjeToptanUrun {
     Actions actions = new Actions(Driver.getDriver());
+    JavascriptExecutor executor=(JavascriptExecutor)Driver.getDriver();
     @Test
     public void testProjeAnaSayfa() throws InterruptedException {
         Driver.getDriver().get(ConfigReader.getProperty("hub"));
@@ -32,25 +33,15 @@ public class ProjeToptanUrun {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        JavascriptExecutor executor=(JavascriptExecutor)Driver.getDriver();//ulasılamayan lokate leri js ile alır.
+       // JavascriptExecutor executor=(JavascriptExecutor)Driver.getDriver();//ulasılamayan lokate leri js ile alır.
         executor.executeScript("arguments[0].click();",projePage.myaccount);
         //Driver.getDriver().switchTo().newWindow(WindowType.TAB);//yeni sekmede açar.
         //Driver.getDriver().get("https://hubcomfy.com/my-account-2/");
         //projePage.myaccount.click();
         projePage.storeManager.click();
         projePage.product.click();
-        actions.sendKeys(Keys.PAGE_DOWN).perform();
-        //ürün ekleme kısmı
-        //projePage.addNew.click();
-        //Thread.sleep(2000);
-        //Select select = new Select(projePage.simpleProduct);
-        //String product="Simple Product";
-        //select.selectByVisibleText(product);
-        //Thread.sleep(3000);
-        // actions.sendKeys(Keys.PAGE_DOWN).perform();
-        //Thread.sleep(2000);
-        // projePage.title.sendKeys("Kampsandalyesi");
-        projePage.kampSandalyesiButonu.click();
+        executor.executeScript("arguments[0].scrollIntoView(true);",projePage.kampSandalyesiButonu);
+        executor.executeScript("arguments[0].click();",projePage.kampSandalyesiButonu);
         Thread.sleep(3000);
         actions.sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_DOWN).perform();
         Thread.sleep(3000);
@@ -77,11 +68,12 @@ public class ProjeToptanUrun {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(projePage.popUpMessage));
 
-        System.out.println("submit onay yazisi="+projePage.popUpMessage.getText());
+
         //String actualText = projePage.popUpMessage.getText();
         //String expectedText = "Product Successfully Published.";
         //Assert.assertEquals(expectedText,actualText);
         Assert.assertTrue(projePage.popUpMessage.isDisplayed());
+        System.out.println("submit onay yazisi="+projePage.popUpMessage.getText());
         //Driver.closeDriver();
 
     }
